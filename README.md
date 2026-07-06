@@ -161,6 +161,6 @@ http://localhost:8080/login
 
 ## 作者
 
-小林駿平
 
-GitHub
+
+GitHub: https://github.com/aca04922-cmd
