@@ -17,10 +17,12 @@ public class SearchAssetServiceImpl implements SearchAssetService {
 
 	private final SearchAssetRepository repository;
 
+//	全ての資産情報を取得する
 	@Override
 	public List<AssetEntity> searchAssets() {
 		// TODO 自動生成されたメソッド・スタブ
 		
+//		SecurityContextからusernameを取得する
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 
@@ -29,9 +31,11 @@ public class SearchAssetServiceImpl implements SearchAssetService {
 		return list;
 	}
 	
+//	個別の資産情報を取得する
 	@Override
 	public AssetEntity findAssetById(Integer assetId) {
 		
+//		SecurityContextからusernameを取得する
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String username = auth.getName();
 		

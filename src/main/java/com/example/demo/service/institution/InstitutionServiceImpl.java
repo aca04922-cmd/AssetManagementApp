@@ -15,6 +15,7 @@ public class InstitutionServiceImpl implements InstitutionService {
 
 	private final InstitutionRepository repository;
 	
+//	全金融機関の情報を取得する
 	@Override
 	public List<InstitutionEntity> getAllInstitution() {
 		// TODO 自動生成されたメソッド・スタブ
@@ -23,6 +24,7 @@ public class InstitutionServiceImpl implements InstitutionService {
 		
 	}
 	
+//	金融機関IDを使って個別の金融機関名を取得する
 	@Override
 	public String getInstitutionNameById(Integer institutionId){
 		
