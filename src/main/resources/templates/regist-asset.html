@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資産登録</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logout-wrapper">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">ログアウト</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container form-container">
+
+        <h2>資産登録</h2>
+
+        <form th:action="@{/confirm-regist-asset}"
+              method="post"
+              th:object="${registAssetForm}"
+              onsubmit="removeCommasBeforeSubmit()">
+
+            <div class="form-group">
+                <label for="assetName">資産名</label>
+
+                <input type="text"
+                       th:field="*{assetName}"
+                       id="assetName"
+                       placeholder="例：普通預金、投資信託">
+
+                <div th:if="${#fields.hasErrors('assetName')}" class="error">
+                    <p th:errors="*{assetName}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="institution">利用金融機関</label>
+
+                <select th:field="*{institutionId}" id="institution">
+                    <option value="">-- 金融機関を選択してください --</option>
+
+                    <option th:each="institution : ${institutionList}"
+                            th:value="${institution.institutionId}"
+                            th:text="${institution.institutionName}">
+                    </option>
+                </select>
+
+                <div th:if="${#fields.hasErrors('institutionId')}" class="error">
+                    <p th:errors="*{institutionId}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="valuationAmount">評価額</label>
+
+                <input type="text"
+                       th:field="*{valuationAmount}"
+                       id="valuationAmount"
+                       placeholder="例：500,000"
+                       class="comma-input">
+
+                <div th:if="${#fields.hasErrors('valuationAmount')}" class="error">
+                    <p th:errors="*{valuationAmount}"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="acquisitionAmount">取得額</label>
+
+                <input type="text"
+                       th:field="*{acquisitionAmount}"
+                       id="acquisitionAmount"
+                       placeholder="例：500,000"
+                       class="comma-input">
+
+                <div th:if="${#fields.hasErrors('acquisitionAmount')}" class="error">
+                    <p th:errors="*{acquisitionAmount}"></p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-common regist">
+                確認する
+            </button>
+
+        </form>
+
+        <a th:href="@{/mt-top}" class="btn-secondary">
+            トップ画面に戻る
+        </a>
+
+    </div>
+
+    <script>
+        document.querySelectorAll('.comma-input').forEach(input => {
+
+            input.addEventListener('input', function () {
+
+                let value = this.value.replace(/,/g, '');
+
+                if (!isNaN(value) && value !== '') {
+                    this.value = Number(value).toLocaleString();
+                }
+
+            });
+
+        });
+
+        function removeCommasBeforeSubmit() {
+
+            document.querySelectorAll('.comma-input').forEach(input => {
+                input.value = input.value.replace(/,/g, '');
+            });
+
+        }
+    </script>
+
+</body>
+
+</html>

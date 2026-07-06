@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>確認</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logout-wrapper">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">ログアウト</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container delete-container">
+
+        <h2 class="confirm-delete">確認</h2>
+
+        <p class="confirm-delete">
+            下記の資産を削除しますか？
+        </p>
+
+        <div class="card" th:object="${deleteAssetForm}">
+            <p><strong>資産名：</strong><span th:text="*{assetName}"></span></p>
+
+            <p><strong>金融機関：</strong>
+                <span th:text="${institutionName}"></span>
+            </p>
+
+            <p><strong>評価額：</strong>
+                <span th:text="${#numbers.formatInteger(deleteAssetForm.valuationAmount,1,'COMMA')}"></span> 円
+            </p>
+
+            <p><strong>取得額：</strong>
+                <span th:text="${#numbers.formatInteger(deleteAssetForm.acquisitionAmount,1,'COMMA')}"></span> 円
+            </p>
+        </div>
+
+        <form th:action="@{/complete-delete-asset}"
+              method="post"
+              th:object="${deleteAssetForm}"
+              class="form-group">
+
+            <input type="hidden" th:field="*{assetId}">
+
+            <div th:if="${#fields.hasErrors('assetId')}"
+                 th:errors="*{assetId}"
+                 class="error">
+            </div>
+
+            <button type="submit" class="btn-common delete">
+                削除
+            </button>
+
+        </form>
+
+        <a th:href="@{/show-asset-list}" class="btn-secondary">
+            資産一覧に戻る
+        </a>
+
+    </div>
+
+</body>
+
+</html>

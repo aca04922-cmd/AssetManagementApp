@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登録確認</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logout-wrapper">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">ログアウト</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container regist-container">
+
+        <h2>確認</h2>
+
+        <p class="confirm-message">
+            下記の内容で登録しますか？
+        </p>
+
+        <div class="card" th:object="${registAssetForm}">
+            <p><strong>資産名：</strong><span th:text="*{assetName}"></span></p>
+
+            <p>
+                <strong>金融機関：</strong>
+                <span th:text="${institutionName}"></span>
+            </p>
+
+            <p>
+                <strong>評価額：</strong>
+                <span th:text="${#numbers.formatInteger(registAssetForm.valuationAmount,1,'COMMA')}"></span> 円
+            </p>
+
+            <p>
+                <strong>取得額：</strong>
+                <span th:text="${#numbers.formatInteger(registAssetForm.acquisitionAmount,1,'COMMA')}"></span> 円
+            </p>
+        </div>
+
+        <form th:action="@{/complete-regist-asset}"
+              method="post"
+              th:object="${registAssetForm}"
+              class="form-group">
+
+            <input type="hidden" th:field="*{assetName}">
+            <input type="hidden" th:field="*{institutionId}">
+            <input type="hidden" th:field="*{valuationAmount}">
+            <input type="hidden" th:field="*{acquisitionAmount}">
+
+            <button type="submit" class="btn-common regist">
+                登録
+            </button>
+
+        </form>
+
+        <a th:href="@{/show-regist-asset}" class="btn-secondary">
+            入力画面に戻る
+        </a>
+
+    </div>
+
+</body>
+
+</html>

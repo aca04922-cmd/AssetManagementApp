@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>編集確認</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logout-wrapper">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">ログアウト</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container edit-container">
+
+        <h2>確認</h2>
+
+        <p class="confirm-message">
+            下記の内容で更新しますか？
+        </p>
+
+        <div class="card" th:object="${editAssetForm}">
+            <p><strong>資産名：</strong><span th:text="*{assetName}"></span></p>
+
+            <p><strong>金融機関：</strong>
+                <span th:text="${institutionName}"></span>
+            </p>
+
+            <p><strong>評価額：</strong>
+                <span th:text="${#numbers.formatInteger(editAssetForm.valuationAmount, 1, 'COMMA')}"></span> 円
+            </p>
+
+            <p><strong>取得額：</strong>
+                <span th:text="${#numbers.formatInteger(editAssetForm.acquisitionAmount, 1, 'COMMA')}"></span> 円
+            </p>
+        </div>
+
+        <form th:action="@{/complete-edit-asset}"
+              method="post"
+              th:object="${editAssetForm}"
+              class="form-group">
+
+            <input type="hidden" th:field="*{assetId}">
+            <input type="hidden" th:field="*{assetName}">
+            <input type="hidden" th:field="*{institutionId}">
+            <input type="hidden" th:field="*{valuationAmount}">
+            <input type="hidden" th:field="*{acquisitionAmount}">
+
+            <button type="submit" class="btn-common update">
+                更新
+            </button>
+
+        </form>
+
+        <a th:href="@{/show-asset-list}" class="btn-secondary">
+            資産一覧に戻る
+        </a>
+
+    </div>
+
+</body>
+
+</html>

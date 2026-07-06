@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>資産一覧</title>
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+	<header class="header">
+		<div class="logout-wrapper">
+			<form th:action="@{/logout}" method="post">
+				<button type="submit" class="logout-btn">ログアウト</button>
+			</form>
+		</div>
+	</header>
+
+	<div class="container asset-list-container">
+
+		<h2>資産一覧</h2>
+
+		<div th:if="${assetList == null}" class="empty-message">
+			登録されている資産はありません。
+		</div>
+
+		<div th:if="${assetList != null}" class="asset-list-wrapper">
+
+			<div class="table-wrapper">
+
+				<table class="asset-list">
+
+					<thead>
+						<tr>
+							<th colspan="2" class="operation-column">操作</th>
+							<th>資産名</th>
+							<th>金融機関</th>
+							<th>評価額</th>
+							<th>取得額</th>
+							<th>評価損益</th>
+							<th>最終更新日</th>
+						</tr>
+					</thead>
+
+					<tbody>
+
+						<tr th:each="asset : ${assetList}">
+
+							<td>
+								<form th:action="@{/edit-asset}" method="get">
+									<input type="hidden" name="assetId" th:value="${asset.assetId}">
+									<button type="submit" class="btn-e">編集</button>
+								</form>
+							</td>
+
+							<td>
+								<form th:action="@{/confirm-delete-asset}" method="get">
+									<input type="hidden" name="assetId" th:value="${asset.assetId}">
+									<input type="hidden" name="institutionId" th:value="${asset.institutionId}">
+									<button type="submit" class="btn-d">削除</button>
+								</form>
+							</td>
+
+							<td class="asset-name-cell" th:text="${asset.assetName}">
+								資産名
+							</td>
+
+							<td th:text="${asset.institutionName}">
+								金融機関
+							</td>
+
+							<td class="amount" th:text="${#numbers.formatInteger(asset.valuationAmount,1,'COMMA')}">
+							</td>
+
+							<td class="amount" th:text="${#numbers.formatInteger(asset.acquisitionAmount,1,'COMMA')}">
+							</td>
+
+							<td class="amount">
+
+								<span
+									th:text="${asset.valuationGainLoss > 0 ? '+' : ' '} + ${#numbers.formatInteger(asset.valuationGainLoss, 1, 'COMMA')}">
+								</span>
+
+								<span class="gain-percent" th:if="${asset.acquisitionAmount > 0}"
+									th:with="percent=${(asset.valuationGainLoss * 100.0) / asset.acquisitionAmount}"
+									th:text="' (' + ${percent > 0 ? '+' : ''} + ${#numbers.formatDecimal(percent,1,1)} + '%)'"
+									th:classappend="${percent > 0 ? 'gain-plus' : (percent < 0 ? 'gain-minus' : 'gain-zero')}">
+								</span>
+
+							</td>
+
+							<td class="date-column" th:text="${#temporals.format(asset.updatedAt,'yyyy/MM/dd')}">
+							</td>
+
+						</tr>
+
+						<tr class="total-row">
+
+							<td colspan="4" class="total-label">
+								合計
+							</td>
+
+							<td class="amount" th:text="${#numbers.formatInteger(totalValuation,1,'COMMA')}">
+							</td>
+
+							<td class="amount" th:text="${#numbers.formatInteger(totalAcquisition,1,'COMMA')}">
+							</td>
+
+							<td class="amount">
+
+								<span
+									th:text="${totalGainLoss > 0 ? '+' : ''} + ${#numbers.formatInteger(totalGainLoss,1,'COMMA')}"></span>
+								</span>
+
+								<span class="gain-percent" th:if="${totalAcquisition > 0}"
+									th:with="percent=${(totalGainLoss * 100.0) / totalAcquisition}"
+									th:text="' (' + ${percent > 0 ? '+' : ''} + ${#numbers.formatDecimal(percent,1,1)} + '%)'"
+									th:classappend="${percent > 0 ? 'gain-plus' : (percent < 0 ? 'gain-minus' : 'gain-zero')}">
+								</span>
+
+							</td>
+
+							<td></td>
+
+						</tr>
+
+					</tbody>
+
+				</table>
+
+			</div>
+
+		</div>
+
+		<a th:href="@{/mt-top}" class="btn-secondary">
+			トップ画面に戻る
+		</a>
+
+	</div>
+
+</body>
+
+</html>

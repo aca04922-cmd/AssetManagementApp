@@ -1,0 +1,935 @@
+/* ==========================================================
+   1. 共通設定
+   ========================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: #f8f9fa;
+    color: #333;
+    font-family: "Helvetica Neue", Arial,
+        "Hiragino Sans",
+        "Hiragino Kaku Gothic ProN",
+        sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* ==========================================================
+   2. レイアウト
+   ========================================================== */
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 20px;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 40px;
+
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.05);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ==========================================================
+   3. 見出し
+   ========================================================== */
+
+h2 {
+    width: 100%;
+    margin: 0 0 25px;
+
+    color: #1e3a8a;
+    font-size: 24px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.confirm-delete{
+    color:#dc2626;
+}
+
+
+/* ==========================================================
+   4. ボタン共通
+   ========================================================== */
+
+button,
+.btn-primary,
+.btn-secondary,
+.btn-common,
+.logout-btn{
+
+    cursor:pointer;
+    transition:.2s;
+    text-align:center;
+    text-decoration:none;
+
+}
+
+
+/* ==========================================================
+   ログアウト
+   ========================================================== */
+
+.logout-btn{
+
+    padding:8px 16px;
+
+    background:#f3f4f6;
+    color:#4b5563;
+
+    border:1px solid #d1d5db;
+    border-radius:6px;
+
+    font-size:14px;
+    font-weight:600;
+
+}
+
+.logout-btn:hover{
+
+    background:#e5e7eb;
+    color:#1f2937;
+
+}
+
+
+/* ==========================================================
+   メインボタン
+   ========================================================== */
+
+.btn-primary{
+
+    display:block;
+
+    width:100%;
+    max-width:280px;
+
+    margin:8px 0 20px;
+
+    padding:14px 0;
+
+    border:none;
+    border-radius:8px;
+
+    background:#0f172a;
+    color:#fff !important;
+
+    font-size:15px;
+    font-weight:600;
+
+    box-shadow:0 4px 6px rgba(15,23,42,.08);
+
+}
+
+.btn-primary:hover{
+
+    background:#1e293b;
+
+}
+
+.btn-primary:active{
+
+    transform:scale(.98);
+
+}
+
+
+/* ==========================================================
+   サブボタン
+   ========================================================== */
+
+.btn-secondary{
+
+    display:inline-block;
+
+    padding:10px 24px;
+
+    border:1px solid #d1d5db;
+    border-radius:4px;
+
+    background:#f3f4f6;
+    color:#4b5563;
+
+    font-size:14px;
+    font-weight:600;
+
+}
+
+.btn-secondary:hover{
+
+    background:#e5e7eb;
+    color:#1f2937;
+    border-color:#9ca3af;
+
+}
+
+
+/* ==========================================================
+   共通ボタン
+   ========================================================== */
+
+.btn-common{
+
+    display:block;
+
+    width:100%;
+    max-width:280px;
+
+    margin-bottom:16px;
+
+    padding:14px 0;
+
+    border:none;
+    border-radius:8px;
+
+    background:#007bff;
+    color:#fff;
+
+    font-size:16px;
+    font-weight:bold;
+
+    box-shadow:0 4px 6px rgba(0,0,0,.1);
+
+}
+
+.btn-common:hover{
+
+    transform:translateY(-2px);
+
+    background:#0056b3;
+
+    box-shadow:0 6px 8px rgba(0,0,0,.15);
+
+}
+
+.btn-common:active{
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+
+
+/* ----------------------------------------------------------
+   ボタン色
+---------------------------------------------------------- */
+
+.btn-common.delete{
+
+    background:#dc2626;
+
+}
+
+.btn-common.delete:hover{
+
+    background:#b91c1c;
+
+}
+
+.btn-common.update{
+
+    background:#2563eb;
+
+}
+
+.btn-common.update:hover{
+
+    background:#1d4ed8;
+
+}
+
+.btn-common.regist{
+
+    background:#0f172a;
+
+}
+
+.btn-common.regist:hover{
+
+    background:#1e293b;
+
+}
+
+.btn-common.register{
+
+    margin-top:30px;
+
+}
+
+/* ==========================================================
+   5. フォーム
+   ========================================================== */
+
+.form-group{
+    width:100%;
+    max-width:280px;
+    margin-bottom:20px;
+}
+
+.form-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#475569;
+
+    font-size:14px;
+    font-weight:600;
+
+}
+
+
+/* ----------------------------------------------------------
+   入力欄
+---------------------------------------------------------- */
+
+input,
+select{
+
+    width:100%;
+
+    padding:12px 16px;
+
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+
+    background:#fff;
+    color:#1e293b;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.2s;
+
+}
+
+input:hover,
+select:hover{
+
+    border-color:#94a3b8;
+
+}
+
+input:focus,
+select:focus{
+
+    border-color:#1e3a8a;
+
+    box-shadow:0 0 0 3px rgba(30,58,138,.15);
+
+}
+
+
+/* ----------------------------------------------------------
+   Select
+---------------------------------------------------------- */
+
+select{
+
+    cursor:pointer;
+
+}
+
+option{
+
+    background:#fff;
+
+    color:#1e293b;
+
+}
+
+optgroup{
+
+    background:#f8f9fa;
+
+    color:#64748b;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================================================
+   エラーメッセージ
+   ========================================================== */
+
+.error{
+
+    width:100%;
+    max-width:300px;
+
+    margin-top:6px;
+    margin-bottom:8px;
+
+    color:#dc2626;
+
+    font-size:13px;
+    font-weight:600;
+
+    text-align:left;
+
+}
+
+.error-msg{
+
+    margin:20px 0;
+
+    color:#dc2626;
+
+    font-size:16px;
+    font-weight:600;
+
+    text-align:center;
+
+    line-height:1.6;
+
+}
+
+.error-detail{
+
+    margin-bottom:30px;
+
+    color:#64748b;
+
+    font-size:14px;
+
+    text-align:center;
+
+    word-break:break-word;
+
+}
+
+
+/* ==========================================================
+   確認メッセージ
+   ========================================================== */
+
+.confirm-message{
+
+    margin-bottom:20px;
+
+    color:#475569;
+
+    font-size:15px;
+
+    text-align:center;
+
+}
+
+.confirm-delete{
+
+    color:#dc2626;
+
+}
+
+
+/* ==========================================================
+   カード
+   ========================================================== */
+
+.card{
+
+    width:100%;
+
+    margin:20px 0 30px;
+
+    padding:20px;
+
+    background:#f8fafc;
+
+    border:1px solid #e2e8f0;
+    border-radius:8px;
+
+}
+
+.card p{
+
+    margin:12px 0;
+
+    line-height:1.6;
+
+}
+
+.card strong{
+
+    color:#334155;
+
+}
+
+
+/* ==========================================================
+   空データ
+   ========================================================== */
+
+.empty-message{
+
+    margin:40px 0;
+
+    color:#64748b;
+
+    text-align:center;
+
+}
+
+/* ==========================================================
+   6. 資産一覧テーブル
+   ========================================================== */
+
+.table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+.asset-list{
+
+    width:100%;
+    min-width:900px;
+
+    margin:25px 0;
+
+    border-collapse:collapse;
+
+    background:#fff;
+
+    font-size:14px;
+
+    text-align:center;
+
+    box-shadow:0 4px 15px rgba(0,0,0,.03);
+
+}
+
+.asset-list th{
+
+    padding:14px 16px;
+
+    background:#0f172a;
+    color:#fff;
+
+    font-weight:600;
+
+    letter-spacing:.5px;
+
+}
+
+.asset-list td{
+
+    padding:12px 16px;
+
+    color:#475569;
+
+    border-bottom:1px solid #f1f5f9;
+
+    vertical-align:middle;
+
+}
+
+.asset-list tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+/* ==========================================================
+   テーブル列
+   ========================================================== */
+
+.operation-column{
+
+    width:150px;
+
+}
+
+.amount{
+
+    text-align:right;
+
+    white-space:nowrap;
+
+}
+
+.date-column{
+
+    white-space:nowrap;
+
+}
+
+.asset-name-cell{
+
+    word-break:break-word;
+
+}
+
+
+/* ==========================================================
+   テーブル内フォーム
+   ========================================================== */
+
+.asset-list form{
+
+    margin:0;
+
+    display:inline-block;
+
+}
+
+
+/* ==========================================================
+   編集ボタン
+   ========================================================== */
+
+.btn-e{
+
+    padding:5px 12px;
+
+    border:1px solid #1e3a8a;
+    border-radius:4px;
+
+    background:transparent;
+
+    color:#1e3a8a;
+
+    font-size:12px;
+    font-weight:600;
+
+}
+
+.btn-e:hover{
+
+    background:#1e3a8a;
+
+    color:#fff;
+
+}
+
+
+/* ==========================================================
+   削除ボタン
+   ========================================================== */
+
+.btn-d{
+
+    padding:5px 12px;
+
+    border:1px solid #dc2626;
+    border-radius:4px;
+
+    background:transparent;
+
+    color:#dc2626;
+
+    font-size:12px;
+    font-weight:600;
+
+}
+
+.btn-d:hover{
+
+    background:#dc2626;
+
+    color:#fff;
+
+}
+
+
+/* ==========================================================
+   合計
+   ========================================================== */
+
+.total-row{
+
+    background:#f8f9fa;
+
+    font-weight:bold;
+
+}
+
+.total-row td{
+
+    color:#333;
+
+}
+
+.total::after{
+
+    content:" (円)";
+
+    margin-left:2px;
+
+    font-size:.8em;
+
+    color:#555;
+
+}
+
+.total-label{
+
+    text-align:center;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================================================
+   損益率
+   ========================================================== */
+
+.gain-percent{
+
+    font-size:12px;
+
+    font-weight:bold;
+
+}
+
+/* 評価損益 */
+.gain-plus{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.gain-minus{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+.gain-zero{
+    color:#475569;
+    font-weight:bold;
+}
+
+/* ==========================================================
+   7. 画面別レイアウト
+   ========================================================== */
+
+.top-container,
+.login-container,
+.complete-container{
+
+    max-width:400px;
+
+}
+
+.form-container,
+.edit-container,
+.regist-container,
+.delete-container,
+.edit-form-container{
+
+    max-width:500px;
+
+}
+
+.error-container{
+
+    max-width:450px;
+
+}
+
+.asset-list-container{
+
+    width:95%;
+
+    max-width:1000px;
+
+}
+
+.asset-list-wrapper{
+
+    width:100%;
+
+}
+
+
+/* ==========================================================
+   8. レスポンシブ
+   ========================================================== */
+
+@media (max-width:992px){
+
+    .container{
+
+        max-width:95%;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    /* -----------------------
+       Header
+    ----------------------- */
+
+    .header{
+
+        padding:15px;
+
+    }
+
+    .logout-btn{
+
+        padding:8px 14px;
+
+        font-size:13px;
+
+    }
+
+    /* -----------------------
+       Container
+    ----------------------- */
+
+    .container{
+
+        width:95%;
+
+        max-width:none;
+
+        margin:20px auto;
+
+        padding:24px 20px;
+
+    }
+
+    h2{
+
+        margin-bottom:20px;
+
+        font-size:22px;
+
+    }
+
+    /* -----------------------
+       Button
+    ----------------------- */
+
+    .btn-primary,
+    .btn-common,
+    .btn-secondary{
+
+        width:100%;
+
+        max-width:none;
+
+    }
+
+    .btn-secondary{
+
+        margin-top:20px;
+
+        box-sizing:border-box;
+
+    }
+
+    /* -----------------------
+       Form
+    ----------------------- */
+
+    .form-container,
+    .edit-form-container,
+    .login-container{
+
+        width:95%;
+
+    }
+
+    input,
+    select{
+
+        width:100%;
+
+    }
+
+    /* -----------------------
+       Card
+    ----------------------- */
+
+    .card{
+
+        padding:16px;
+
+    }
+
+    .card p{
+
+        font-size:14px;
+
+    }
+
+    /* -----------------------
+       Table
+    ----------------------- */
+
+    .asset-list{
+
+        min-width:850px;
+
+        font-size:12px;
+
+    }
+
+    .asset-list th,
+    .asset-list td{
+
+        padding:8px;
+
+    }
+
+    .btn-e,
+    .btn-d{
+
+        padding:4px 8px;
+
+        font-size:11px;
+
+    }
+
+    /* -----------------------
+       Error
+    ----------------------- */
+
+    .error-msg{
+
+        font-size:16px;
+
+    }
+
+    .error-detail{
+
+        font-size:13px;
+
+    }
+
+}

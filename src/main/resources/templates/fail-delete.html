@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>削除エラー</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logout-wrapper">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">ログアウト</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container error-container">
+
+        <h2 class="confirm-delete">エラー</h2>
+		
+
+        <p class="error-msg">
+           削除できませんでした
+        </p>
+
+        <a th:href="@{/show-asset-list}" class="btn-secondary">
+            資産一覧に戻る
+        </a>
+
+    </div>
+
+</body>
+
+</html>

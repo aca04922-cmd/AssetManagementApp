@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資産管理アプリ</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="logout-wrapper">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="logout-btn">ログアウト</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="container top-container">
+        <h2>トップ</h2>
+
+        <a th:href="@{/show-asset-list}" class="btn-primary">
+            資産一覧
+        </a>
+
+        <a th:href="@{/show-regist-asset}" class="btn-primary">
+            資産登録
+        </a>
+    </div>
+
+</body>
+
+</html>
