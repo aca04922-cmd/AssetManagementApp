@@ -20,7 +20,7 @@ public class SearchAssetRepositoryImpl implements SearchAssetRepository {
 	public List<AssetEntity> searchAssets(String username) {
 		// TODO 自動生成されたメソッド・スタブ
 
-		// 💡 JOINを使って、m_institution から金融機関名（institution_name）を取得するSQL
+		// JOINを使って、m_institution から金融機関名（institution_name）を取得する
 		String sql = "SELECT "
 				+ "  a.asset_id As assetId, "
 				+ "  a.asset_name AS assetName, "
@@ -35,7 +35,7 @@ public class SearchAssetRepositoryImpl implements SearchAssetRepository {
 				+ "  ON a.institution_id = i.institution_id "
 				+ "WHERE a.username = ?"; 
 
-		// BeanPropertyRowMapperが AS で付けた名前（institutionNameなど）を自動でセットしてくれます
+		// BeanPropertyRowMapperが AS で付けた名前（institutionNameなど）を自動でセット
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(AssetEntity.class), username);
 
 		
@@ -46,7 +46,7 @@ public class SearchAssetRepositoryImpl implements SearchAssetRepository {
 	    String sql = "SELECT "
 	            + "  a.asset_id AS assetId, "
 	            + "  a.asset_name AS assetName, "
-	            + "  i.institution_id AS institutionId, " // 💡 編集画面のセレクトボックスの初期値用にIDも取っておく
+	            + "  i.institution_id AS institutionId, " // 編集画面のセレクトボックスの初期値用にIDも取っておく
 	            + "  i.institution_name AS institutionName, "
 	            + "  a.valuation_amount AS valuationAmount, "
 	            + "  a.acquisition_amount AS acquisitionAmount "

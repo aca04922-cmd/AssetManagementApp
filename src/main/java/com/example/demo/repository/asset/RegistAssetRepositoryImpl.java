@@ -16,6 +16,7 @@ public class RegistAssetRepositoryImpl implements RegistAssetRepository {
 	@Override
 	public void registAsset(AssetEntity entity, String username) {
 		
+//		更新日時のみSQL実行時の情報を生成する
 		final String SQL = "INSERT INTO t_asset "
 				+ "(asset_name, institution_id, valuation_amount, acquisition_amount, username, updated_at) "
 				+ "VALUES (?, ?, ?, ?, ?, NOW())"; 
