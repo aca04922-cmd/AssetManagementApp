@@ -28,11 +28,15 @@ public class DeleteController {
 	@GetMapping("/confirm-delete-asset")
 	public String confirmDeleteAsset(@RequestParam Integer assetId, Integer institutionId, Model model) {
 
+//		DBから資産Idを使って情報を取得する。
 		AssetEntity a = sService.findAssetById(assetId);
+		
+//		取得したEntityをformに移し替える。
 		DeleteAssetForm form = new DeleteAssetForm();
 		org.springframework.beans.BeanUtils.copyProperties(a, form);
 		model.addAttribute("deleteAssetForm", form);
 
+//		金融機関名を取得する
 		String institutionName = iService.getInstitutionNameById(institutionId);
 		model.addAttribute("institutionName", institutionName);
 
