@@ -50,6 +50,7 @@ public class DeleteController {
 
 		}
 
+//		データベースの削除が完了した場合はtrue、失敗した場合はfalseが入る
 		boolean isSuccess = dService.deleteAssetById(form.getAssetId());
 
 		if (isSuccess) {
@@ -60,6 +61,7 @@ public class DeleteController {
 
 		} else {
 
+//			資産情報の削除に失敗した場合、"fali-delete"に遷移
 			return "fail-delete";
 
 		}

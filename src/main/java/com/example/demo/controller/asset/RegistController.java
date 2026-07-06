@@ -35,6 +35,7 @@ public class RegistController {
 	@GetMapping("/show-regist-asset")
 	public String showRegistAsset(@ModelAttribute RegistAssetForm form, Model model) {
 
+//		金融機関情報をDBから取得
 		List<InstitutionEntity> list = iService.getAllInstitution();
 
 		model.addAttribute("institutionList", list);
@@ -55,6 +56,7 @@ public class RegistController {
 			return "regist-asset";
 		}
 
+//		金融機関名をDBから取得。確認画面で金融機関IDではなく金融機関名を表示するため。
 		String institutionName = iService.getInstitutionNameById(form.getInstitutionId());
 
 		model.addAttribute("institutionName", institutionName);
@@ -72,10 +74,13 @@ public class RegistController {
 
 		AssetEntity entity = new AssetEntity();
 
+//		formの情報をentityに詰め替え
 		org.springframework.beans.BeanUtils.copyProperties(form, entity);
 
+//		DBへの登録処理実行
 		service.regist(entity);
 
+//		PRGパターンで処理。FlashAttributeを使用してリダイレクト先にメッセージを渡す。
 		redirectAttributes.addFlashAttribute("msg", "資産登録が完了しました。");
 
 		return "redirect:/complete";

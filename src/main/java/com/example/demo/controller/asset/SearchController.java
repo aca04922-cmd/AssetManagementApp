@@ -26,17 +26,18 @@ public class SearchController {
 		List<AssetEntity> list = service.searchAssets();
 
 		Integer totalValuation = list.stream()
-				.mapToInt(AssetEntity::getValuationAmount) // 評価額を取得
+				.mapToInt(AssetEntity::getValuationAmount) // 評価額を取得し、合計する
 				.sum();
 
 		Integer totalAcquisition = list.stream()
-				.mapToInt(AssetEntity::getAcquisitionAmount) // 評価額を取得
+				.mapToInt(AssetEntity::getAcquisitionAmount) // 取得額を取得し、合計する
 				.sum();
 
 		Integer totalGainLoss = list.stream()
-				.mapToInt(AssetEntity::getValuationGainLoss) // 評価額を取得
+				.mapToInt(AssetEntity::getValuationGainLoss) // 評価損益額を取得し、合計する
 				.sum();
 
+//		取得したリストと合計した値をモデルに登録する
 		model.addAttribute("assetList", list);
 		model.addAttribute("totalValuation", totalValuation);
 		model.addAttribute("totalAcquisition", totalAcquisition);
